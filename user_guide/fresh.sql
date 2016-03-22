@@ -167,6 +167,12 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 KEY `ci_sessions_timestamp` (`timestamp`)
 );
 
+CREATE TABLE groups_locations (
+	ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    group_id INTEGER NOT NULL,
+    location_id INTEGER NOT NULL,
+	CONSTRAINT uc_groups_locations UNIQUE(group_id, location_id));
+
 CREATE TABLE location (
 	ID INTEGER NOT NULL PRIMARY KEY,
 	name VARCHAR(10) NOT NULL,
