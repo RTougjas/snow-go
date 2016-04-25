@@ -66,6 +66,26 @@ CREATE TABLE feedback(
     notes VARCHAR(150) NOT NULL,
 	location INTEGER NOT NULL);
 	
+CREATE TABLE PinCode (
+	code INTEGER PRIMARY KEY);
+	
+CREATE TABLE observation (
+	ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	correctCode INTEGER NOT NULL,
+	time VARCHAR(10) NOT NULL);
+	
+CREATE TABLE wrongCode (
+	observation INTEGER NOT NULL,
+	wrongCode INTEGER NOT NULL)
+	
+ALTER TABLE observation ADD CONSTRAINT fk_correct_code_in_observation
+	FOREIGN KEY (correctCode) REFERENCES PinCode(code)
+	ON UPDATE CASCADE ON DELETE RESTRICT;
+	
+ALTER TABLE wrongCode ADD CONSTRAINT fk_observation_wrong_code
+	FOREIGN KEY (observation) REFERENCES observation(ID)
+	ON UPDATE CASCADE ON DELETE RESTRICT;
+	
 alter table feedback add CONSTRAINT uc_feedback UNIQUE (firstName, notes, location);
 
 alter table category add CONSTRAINT uc_category UNIQUE(name, location);

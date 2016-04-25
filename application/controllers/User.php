@@ -37,6 +37,17 @@ class User extends CI_Controller {
 
 			//list the users
 			
+			$this->data['observations'] = $this->ManagementModel->getObservations();
+			$this->data['wrong_codes'] = $this->ManagementModel->getWrongCodes();
+			$this->data['title'] = "Mõõtmistulemused";
+			$this->session->set_userdata('location_array', $this->ManagementModel->getUserLocations($this->session->userdata('user_id')));
+			
+			
+			$this->load->view('templates/header');
+			$this->load->view('v_observations', $this->data);
+			$this->load->view('templates/footer');
+			
+			/*
 			$this->data['users'] = $this->ManagementModel->getUsers();
 			$this->session->set_userdata('location_array', $this->ManagementModel->getUserLocations($this->session->userdata('user_id')));
 			$this->data['title'] = "Kasutajad";
@@ -44,6 +55,8 @@ class User extends CI_Controller {
 			$this->load->view('templates/header');
 			$this->load->view('v_users', $this->data);
 			$this->load->view('templates/footer');
+			
+			*/
 
 		}
     }

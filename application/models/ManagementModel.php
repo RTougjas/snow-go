@@ -68,7 +68,25 @@ class ManagementModel extends CI_Model {
 		else {
 			return false;
 		}
+	}
+	
+	public function getObservations() {
 		
+		$this->db->select('*');
+		$this->db->from('observation');
+		$this->db->order_by('ID', 'desc');
+		$query = $this->db->get();
+		
+		return $query->result();
+	}
+	
+	public function getWrongCodes() {
+		
+		$this->db->select('*');
+		$this->db->from('wrongCode');
+		$query = $this->db->get();
+		
+		return $query->result();
 	}
 }
 ?>
