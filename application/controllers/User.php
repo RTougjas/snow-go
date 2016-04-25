@@ -21,10 +21,8 @@ class User extends CI_Controller {
 		if (!$this->ion_auth->logged_in())
 		{
 			
-
-			
-			// redirect them to the login page
 			redirect('User/login', 'refresh');
+			
 		}/*
 		
 		elseif (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
@@ -813,6 +811,11 @@ class User extends CI_Controller {
 		$view_html = $this->load->view($view, $this->viewdata, $returnhtml);
 
 		if ($returnhtml) return $view_html;//This will return html on 3rd argument being true
+	}
+	
+	public function observe() {
+		
+		echo $this->input->post['observed'];
 	}
 	
 }
