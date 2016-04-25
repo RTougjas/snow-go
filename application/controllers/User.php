@@ -20,6 +20,9 @@ class User extends CI_Controller {
 		
 		if (!$this->ion_auth->logged_in())
 		{
+			
+
+			
 			// redirect them to the login page
 			redirect('User/login', 'refresh');
 		}/*
