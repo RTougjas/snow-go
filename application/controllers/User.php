@@ -815,12 +815,8 @@ class User extends CI_Controller {
 	
 	public function observe() {
 		
-		//print_r($this->input->post());
-		$req = file_get_contents('php://input');
-		
-		$json = json_decode($req, true);
-		
-		var_dump($json);
+		print_r($this->input->post());
+		print_r($this->input->get());
 		
 		
 	}
