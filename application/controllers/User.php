@@ -815,7 +815,7 @@ class User extends CI_Controller {
 	
 	public function observe() {
 		
-		echo $this->input->post['observed'];
+		print_r($_POST);
 	}
 	
 }
