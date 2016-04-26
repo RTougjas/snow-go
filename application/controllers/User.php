@@ -818,7 +818,9 @@ class User extends CI_Controller {
 		//print_r($this->input->post());
 		$req = file_get_contents('php://input');
 		
-		echo json_decode($req, true);
+		$json = json_decode($req, true);
+		
+		var_dump($json);
 		
 		
 	}
