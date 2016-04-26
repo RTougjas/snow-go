@@ -815,7 +815,7 @@ class User extends CI_Controller {
 	
 	public function observe() {
 		
-		//$json = $this->input->post('observed');
+		var_dump($this->input->post());
 		
 		$json = '{"correctCode":"1221"}';
 		
