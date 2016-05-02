@@ -846,12 +846,13 @@ class User extends CI_Controller {
 		
 		$w = $this->parseString($wrong_codes);
 			
-		for($i = 0; $i < sizeOf($w); $i++) {
+		if(empty($w) == false || sizeOf($w) > 1) {
+			for($i = 0; $i < sizeOf($w); $i++) {
 
-			$this->ManagementModel->insertWrongAttempts($OBSERVATION_ID[0]->last_id, $w[$i]);
+				$this->ManagementModel->insertWrongAttempts($OBSERVATION_ID[0]->last_id, $w[$i]);
 			
+			}
 		}
-		
 	}
 	
 	// THIS IS LEGACY CODE. I JUST NEED TO GET THIS APP WORKING REALLY FAST. 

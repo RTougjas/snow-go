@@ -26,7 +26,7 @@
 									<?php for ( $j = 0; $j < sizeOf($wrong_codes); $j++ ) { ?>
 										<?php if( $wrong_codes[$j]->observation == $observations[$i]->ID ) {?>
 											<tr>
-												<td><?php echo $wrong_codes[$j]->wrongCode; ?></td>
+												<td><?php echo $wrong_codes[$j]->w_code; ?></td>
 											</tr>
 										<?php } ?>
 									<?php } ?>

@@ -67,16 +67,16 @@ CREATE TABLE feedback(
 	location INTEGER NOT NULL);
 	
 CREATE TABLE PinCode (
-	code INTEGER PRIMARY KEY);
+	code VARCHAR(12) PRIMARY KEY);
 	
 CREATE TABLE observation (
 	ID INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	correctCode INTEGER NOT NULL,
+	correctCode VARCHAR(12) NOT NULL,
 	time VARCHAR(10) NOT NULL);
 	
 CREATE TABLE wrongCode (
 	observation INTEGER NOT NULL,
-	wrongCode INTEGER NOT NULL)
+	w_code VARCHAR(12) NOT NULL);
 	
 ALTER TABLE observation ADD CONSTRAINT fk_correct_code_in_observation
 	FOREIGN KEY (correctCode) REFERENCES PinCode(code)

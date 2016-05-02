@@ -122,7 +122,7 @@ class ManagementModel extends CI_Model {
 	public function insertWrongAttempts($o, $w) {
 		
 		$this->db->set('observation', $o);
-		$this->db->set('wrongCode', $w);
+		$this->db->set('w_code', $w);
 		$this->db->insert('wrongCode');
 	
 	}
