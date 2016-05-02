@@ -88,5 +88,43 @@ class ManagementModel extends CI_Model {
 		
 		return $query->result();
 	}
+	
+	public function savePincode($data) {
+		
+		$this->db->insert('PinCode', $data);
+
+	}
+	
+	public function codeExists($code) {
+		
+		$this->db->select('*');
+		$this->db->from('PinCode');
+		$this->db->where('code', $code);
+		$query = $this->db->get();
+		
+		if ( sizeof($query->result()) == 1 ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public function saveObservation($data) {
+		
+		$this->db->insert('observation', $data);
+		$this->db->select('LAST_INSERT_ID() AS last_id');
+		$query = $this->db->get();
+		return $query->result();
+		
+	}
+	
+	public function insertWrongAttempts($o, $w) {
+		
+		$this->db->set('observation', $o);
+		$this->db->set('wrongCode', $w);
+		$this->db->insert('wrongCode');
+	
+	}
 }
 ?>

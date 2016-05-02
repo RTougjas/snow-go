@@ -815,12 +815,62 @@ class User extends CI_Controller {
 	
 	public function observe() {
 		
-		var_dump($this->input->post());
+		$postdata = file_get_contents("php://input");
 		
-		echo '<br>';
-		print_r($this->input->get());
-		echo '<br>';
-		var_dump($this->input->get());
+		$obj = json_decode($postdata, true);
+		
+		//$correctCode = $obj -> {'correctCode'};
+		//$wrong_codes = $obj -> {'wrong_attempts'};
+		//$time = $obj -> {'time'};
+		
+		$correctCode = $obj['correctCode'];
+		$wrong_codes = $obj['wrong_attempts'];
+		$time = $obj['time'];
+		
+		
+		$correctCodeData = array(
+			'code' => $correctCode
+		);
+			
+		$observationData = array(
+			'correctCode' => $correctCode,
+			'time' => $time
+		);
+		
+		if($this->ManagementModel->codeExists($correctCode) == false) {
+			$this->ManagementModel->savePincode($correctCodeData);
+		}
+		
+		$OBSERVATION_ID = $this->ManagementModel->saveObservation($observationData);
+
+		
+		$w = $this->parseString($wrong_codes);
+			
+		for($i = 0; $i < sizeOf($w); $i++) {
+
+			$this->ManagementModel->insertWrongAttempts($OBSERVATION_ID[0]->last_id, $w[$i]);
+			
+		}
+		
+	}
+	
+	// THIS IS LEGACY CODE. I JUST NEED TO GET THIS APP WORKING REALLY FAST. 
+	function parseString($string) {
+		
+		$a = array();
+		
+		$temp = "";
+		for($i = 0; $i < strlen($string); $i++) {
+			if(ctype_digit($string[$i])) {
+				$temp = $temp.$string[$i];
+			}
+			else if($string[$i] == "," || $string[$i] == "]") {
+				array_push($a, $temp);
+				$temp = "";
+			}
+		}
+		
+		return $a;
 		
 		
 	}
