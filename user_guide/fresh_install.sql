@@ -82,6 +82,8 @@ ALTER TABLE observation ADD CONSTRAINT fk_correct_code_in_observation
 	FOREIGN KEY (correctCode) REFERENCES PinCode(code)
 	ON UPDATE CASCADE ON DELETE RESTRICT;
 	
+ALTER TABLE observation ADD COLUMN type VARCHAR(2);
+	
 ALTER TABLE wrongCode ADD CONSTRAINT fk_observation_wrong_code
 	FOREIGN KEY (observation) REFERENCES observation(ID)
 	ON UPDATE CASCADE ON DELETE RESTRICT;
