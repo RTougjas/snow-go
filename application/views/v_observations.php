@@ -13,9 +13,10 @@
 				<tr>
 					<th>No.</th>
 					<th>Korrektne kood</th>
-					<th>Valesti sisestatud koodid</th>
+					<th>Valesti sisestatud</th>
 					<th>Kulunud aeg</th>
 					<th>Tüüp</th>
+					<th>Sisestusväli</th>
 				</tr>
 				
 				<?php for( $i = 0; $i < sizeOf($observations); $i++) { ?>
@@ -35,6 +36,7 @@
 						</td>
 						<td><?php echo $observations[$i]->time; ?></td>
 						<td><?php echo $observations[$i]->type; ?></td>
+						<td><?php echo $observations[$i]->pad; ?></td>
 				<?php } ?>
 				
 			</table>
