@@ -827,6 +827,7 @@ class User extends CI_Controller {
 		$wrong_codes = $obj['wrong_attempts'];
 		$time = $obj['time'];
 		$type = $obj['type'];
+		$pad = $obj['pad'];
 		
 		
 		$correctCodeData = array(
@@ -836,7 +837,8 @@ class User extends CI_Controller {
 		$observationData = array(
 			'correctCode' => $correctCode,
 			'time' => $time,
-			'type' => $type
+			'type' => $type,
+			'pad' => $pad
 		);
 		
 		if($this->ManagementModel->codeExists($correctCode) == false) {

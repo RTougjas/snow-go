@@ -83,6 +83,8 @@ ALTER TABLE observation ADD CONSTRAINT fk_correct_code_in_observation
 	ON UPDATE CASCADE ON DELETE RESTRICT;
 	
 ALTER TABLE observation ADD COLUMN type VARCHAR(2);
+
+ALTER TABLE observation ADD COLUMN pad VARCHAR(3);
 	
 ALTER TABLE wrongCode ADD CONSTRAINT fk_observation_wrong_code
 	FOREIGN KEY (observation) REFERENCES observation(ID)
